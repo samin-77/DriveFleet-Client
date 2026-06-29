@@ -1,7 +1,5 @@
 # DriveFleet - Car Rental Platform
 
-**Live Site:** [https://silly-spoons-rescue.loca.lt](https://silly-spoons-rescue.loca.lt)
-
 ## Features
 
 - Browse and explore a wide range of available cars with detailed information including price, type, seating capacity, and location.
