@@ -43,14 +43,21 @@ export default function Home() {
         ) : error ? (
           <div className="text-center py-8 text-red-500">Failed to load cars. Please try again later.</div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cars?.map((car) => (
-              <motion.div key={car._id} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
-                <CarCard car={car} />
-              </motion.div>
-            ))}
-          </div>
-        )}
+          <>
+            {cars?.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-gray-400 text-lg">No cars available at the moment.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {cars?.map((car) => (
+                  <motion.div key={car._id} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}>
+                    <CarCard car={car} />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </>)}
         {cars?.length > 0 && (
           <div className="text-center mt-8">
             <Link to="/explore-cars" className="inline-flex items-center gap-2 text-primary font-medium hover:underline">

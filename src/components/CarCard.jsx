@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { FiUsers, FiMapPin, FiDollarSign } from 'react-icons/fi';
 
 export default function CarCard({ car }) {
+  if (!car) return null;
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
       <div className="relative h-52 overflow-hidden">
-        <img src={car.image} alt={car.carName} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+        <img src={car.image} alt={car.carName} onError={(e) => { e.target.src = 'https://placehold.co/600x400/eee/999?text=Car+Image'; }} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
         {!car.availability && (
           <div className="absolute top-3 right-3 bg-red-500 text-white text-xs font-medium px-3 py-1 rounded-full">Unavailable</div>
         )}

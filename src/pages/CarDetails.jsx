@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../api/axiosInstance';
 import LoadingSpinner from '../components/LoadingSpinner';
 import BookingModal from '../components/BookingModal';
-import { FaUsers, FaMapMarkerAlt, FaCar, FaDollarSign, FaCheckCircle, FaTimesCircle, FaCalendarCheck } from 'react-icons/fa';
+import { FaUsers, FaMapMarkerAlt, FaCar, FaDollarSign, FaCalendarCheck } from 'react-icons/fa';
 import { FiTruck } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
@@ -34,7 +34,7 @@ export default function CarDetails() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
           <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-200">
-            <img src={car.image} alt={car.carName} className="w-full h-80 md:h-96 object-cover" />
+            <img src={car.image} alt={car.carName} onError={(e) => { e.target.src = 'https://placehold.co/800x600/eee/999?text=Car+Image'; }} className="w-full h-80 md:h-96 object-cover" />
           </div>
         </motion.div>
 

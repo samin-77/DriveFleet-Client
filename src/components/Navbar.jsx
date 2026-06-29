@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { FiMenu, FiX, FiLogOut, FiUser, FiPlusCircle, FiCalendar, FiTruck } from 'react-icons/fi';
+import { FiMenu, FiX, FiLogOut, FiPlusCircle, FiCalendar, FiTruck } from 'react-icons/fi';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -54,7 +54,7 @@ export default function Navbar() {
             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 transition">
-                  <img src={user.photoURL || 'https://ui-avatars.com/api/?name=' + user.name} alt="" className="w-8 h-8 rounded-full object-cover border-2 border-primary" />
+                  <img src={user.photoURL || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(user.name)} alt={user.name} onError={(e) => { e.target.src = 'https://placehold.co/64/eee/999?text=U'; }} className="w-8 h-8 rounded-full object-cover border-2 border-primary" />
                   <span className="hidden sm:block text-sm font-medium text-gray-700">{user.name}</span>
                 </button>
                 {dropdownOpen && (

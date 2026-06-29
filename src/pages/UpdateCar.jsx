@@ -18,10 +18,13 @@ export default function UpdateCar() {
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
+    let ignore = false;
     axiosInstance.get(`/api/cars/${id}`)
       .then((res) => {
+        if (ignore) return;
         const c = res.data;
         setForm({
           dailyPrice: c.dailyPrice,
@@ -32,9 +35,13 @@ export default function UpdateCar() {
           location: c.location,
         });
       })
-      .catch(() => toast.error('Failed to load car'))
-      .finally(() => setLoading(false));
+      .catch(() => { if (!ignore) { toast.error('Failed to load car'); setLoadError(true); } })
+      .finally(() => { if (!ignore) setLoading(false); });
+    return () => { ignore = true; };
   }, [id]);
+
+  if (loading) return <LoadingSpinner />;
+  if (loadError) return <div className="text-center py-16 text-red-500">Failed to load car data. Please try again.</div>;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -74,7 +81,7 @@ export default function UpdateCar() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Daily Rent Price ($)</label>
-            <input type="number" name="dailyPrice" required value={form.dailyPrice} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
+            <input type="number" name="dailyPrice" min={1} required value={form.dailyPrice} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Car Type</label>

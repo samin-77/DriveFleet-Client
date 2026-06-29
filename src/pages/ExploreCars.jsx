@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../api/axiosInstance';
 import CarCard from '../components/CarCard';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { FiSearch, FiSliders } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
 
 const carTypes = ['All', 'SUV', 'Sedan', 'Hatchback', 'Luxury', 'Convertible', 'Truck'];
 
@@ -11,7 +11,7 @@ export default function ExploreCars() {
   const [search, setSearch] = useState('');
   const [carType, setCarType] = useState('All');
 
-  const { data: cars, isLoading, refetch } = useQuery({
+  const { data: cars, isLoading, error } = useQuery({
     queryKey: ['cars', search, carType],
     queryFn: () => {
       const params = new URLSearchParams();
@@ -23,7 +23,6 @@ export default function ExploreCars() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    refetch();
   };
 
   return (
@@ -60,6 +59,8 @@ export default function ExploreCars() {
 
       {isLoading ? (
         <LoadingSpinner />
+      ) : error ? (
+        <div className="text-center py-16 text-red-500">Failed to load cars. Please try again.</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {cars?.length === 0 ? (

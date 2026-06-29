@@ -10,7 +10,7 @@ export default function MyAddedCars() {
   const queryClient = useQueryClient();
   const [deleteId, setDeleteId] = useState(null);
 
-  const { data: cars, isLoading } = useQuery({
+  const { data: cars, isLoading, error } = useQuery({
     queryKey: ['my-cars'],
     queryFn: () => axiosInstance.get('/api/my-cars').then((r) => r.data),
   });
@@ -31,6 +31,7 @@ export default function MyAddedCars() {
   };
 
   if (isLoading) return <LoadingSpinner />;
+  if (error) return <div className="text-center py-16 text-red-500">Failed to load your cars. Please try again.</div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

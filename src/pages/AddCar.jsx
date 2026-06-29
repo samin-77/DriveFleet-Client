@@ -60,7 +60,7 @@ export default function AddCar() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Daily Rent Price ($)</label>
-            <input type="number" name="dailyPrice" required value={form.dailyPrice} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. 50" />
+            <input type="number" name="dailyPrice" min={1} required value={form.dailyPrice} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. 50" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Car Type</label>
@@ -79,7 +79,7 @@ export default function AddCar() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Seat Capacity</label>
-            <input type="number" name="seatCapacity" required value={form.seatCapacity} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. 5" />
+            <input type="number" name="seatCapacity" min={1} max={50} required value={form.seatCapacity} onChange={handleChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="e.g. 5" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Location</label>

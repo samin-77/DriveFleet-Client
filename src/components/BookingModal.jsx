@@ -20,7 +20,7 @@ export default function BookingModal({ car, onClose }) {
         carId: car._id,
         driverNeeded,
         specialNote,
-        bookingDate: startDate || new Date(),
+        bookingDate: startDate || new Date().toISOString().split('T')[0],
         totalPrice,
       });
       toast.success('Car booked successfully!');
@@ -33,7 +33,7 @@ export default function BookingModal({ car, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => onClose?.()}>
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 relative" onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition"><FiX size={20} /></button>
         <h3 className="text-xl font-bold text-gray-900 mb-1">Book {car.carName}</h3>
@@ -43,11 +43,11 @@ export default function BookingModal({ car, onClose }) {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
-              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
+              <input type="date" min={new Date().toISOString().split('T')[0]} value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full px-3 py-2 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Rental Days</label>
-              <input type="number" min={1} value={days} onChange={(e) => setDays(Math.max(1, parseInt(e.target.value) || 1))} className="w-full px-3 py-2 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
+              <input type="number" min={1} max={30} value={days} onChange={(e) => setDays(Math.max(1, Math.min(30, parseInt(e.target.value) || 1)))} className="w-full px-3 py-2 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
             </div>
           </div>
 

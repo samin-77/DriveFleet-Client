@@ -5,12 +5,13 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { FiCalendar, FiDollarSign, FiUser, FiTruck, FiEye } from 'react-icons/fi';
 
 export default function MyBookings() {
-  const { data: bookings, isLoading } = useQuery({
+  const { data: bookings, isLoading, error } = useQuery({
     queryKey: ['my-bookings'],
     queryFn: () => axiosInstance.get('/api/my-bookings').then((r) => r.data),
   });
 
   if (isLoading) return <LoadingSpinner />;
+  if (error) return <div className="text-center py-16 text-red-500">Failed to load bookings. Please try again.</div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -47,7 +48,7 @@ export default function MyBookings() {
                 )}
               </div>
               {booking.car && (
-                <Link to={`/cars/${booking.carId}`} className="shrink-0 flex items-center gap-1 text-primary text-sm font-medium hover:underline mt-2 sm:mt-0">
+                <Link to={`/cars/${booking.car?._id}`} className="shrink-0 flex items-center gap-1 text-primary text-sm font-medium hover:underline mt-2 sm:mt-0">
                   <FiEye /> View Car
                 </Link>
               )}
