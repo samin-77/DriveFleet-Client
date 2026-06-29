@@ -1,6 +1,6 @@
 # DriveFleet - Car Rental Platform
 
-**Live Site:** [https://drivefleet-client.vercel.app](https://drivefleet-client.vercel.app)
+**Live Site:** [https://silly-spoons-rescue.loca.lt](https://silly-spoons-rescue.loca.lt)
 
 ## Features
 
