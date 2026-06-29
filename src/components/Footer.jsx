@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { FiMapPin, FiPhone, FiMail, FiTruck, FiArrowUp } from 'react-icons/fi';
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FiMapPin, FiMail, FiTruck, FiArrowUp } from 'react-icons/fi';
+import { FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
@@ -18,10 +18,9 @@ export default function Footer() {
               Your trusted car rental platform. Explore our fleet and hit the road with confidence. Quality vehicles at affordable prices.
             </p>
             <div className="flex gap-3 mt-4">
-              <a href="#" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaFacebook className="text-sm" /></a>
-              <a href="#" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaTwitter className="text-sm" /></a>
-              <a href="#" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaLinkedin className="text-sm" /></a>
-              <a href="#" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaInstagram className="text-sm" /></a>
+              <a href="https://www.facebook.com/ishfak.mahbub.samin" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaFacebook className="text-sm" /></a>
+              <a href="https://www.linkedin.com/in/ishfak-samin-dev/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaLinkedin className="text-sm" /></a>
+              <a href="https://www.instagram.com/icepiper._.77/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition"><FaInstagram className="text-sm" /></a>
             </div>
           </div>
 
@@ -38,9 +37,8 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Contact Info</h3>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2"><FiMapPin className="text-primary shrink-0" /> 123 Fleet Street, New York, NY 10001</li>
-              <li className="flex items-center gap-2"><FiPhone className="text-primary shrink-0" /> +1 (555) 123-4567</li>
-              <li className="flex items-center gap-2"><FiMail className="text-primary shrink-0" /> info@drivefleet.com</li>
+              <li className="flex items-center gap-2"><FiMapPin className="text-primary shrink-0" /> Dhaka, Bangladesh</li>
+              <li className="flex items-center gap-2"><FiMail className="text-primary shrink-0" /> saminmahbub19@gmail.com</li>
             </ul>
           </div>
         </div>
